@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+ <body>
+        <h3>Список пользователей:</h3>
+        {% if users %}
+            {% for user in users %}
+            <li>
+                <p><b>id пользователя:</b> {{user.id}}</p>
+                <p><b>ФИО пользователя:</b> {{user.full_name}}</p>
+                <a href="/user/{{ user.id }}/accounts/"><button>Посмотреть список счетов и балансов пользователя</button></a>
+            </li>
+            {% endfor %}
+        {% else %}
+        <p>Список пользователей пуст!</p>
+        {% endif %}
+        <br>
+        <p><a href="/"><button>Вернуться на стартовую страницу</button></a></p>
+        <p><a href="/user/{{user_id}}"><button>Вернуться в личный кабинет</button></a></p>
+        <p><a href="/logout"><button>Выйти из аккаунта</button></a></p>
+</body>
+</html>

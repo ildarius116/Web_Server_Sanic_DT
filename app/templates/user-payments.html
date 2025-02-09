@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+ <body>
+        <h3>Ваши платежи:</h3>
+        {% if payments_list %}
+            {% for payments in payments_list %}
+            <li>
+                <p>Платеж №: {{ payments.id }}</p>
+                <p>Транзакция №: {{ payments.transaction_id }}</p>
+                <p>Сумма пополнения: {{ payments.amount }}</p>
+            </li>
+            {% endfor %}
+        {% else %}
+        <p>Список платежей пуст!</p>
+        {% endif %}
+    <br>
+    <a href="/"><button>Вернуться на стартовую страницу</button></a>
+    <a href="/user/{{user_id}}/accounts/"><button>Получить список своих счетов и балансов</button></a>
+    <a href="/user/{{user_id}}/payments/"><button>Получить список своих платежей</button></a>
+    <a href="/logout"><button>Выйти из аккаунта</button></a>
+</body>
+</html>

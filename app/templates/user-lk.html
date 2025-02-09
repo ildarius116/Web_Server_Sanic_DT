@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+ <body>
+    <p>Ваш id: {{ user.id }}</p>
+    <p>Пароль: {{ user.password }}</p>
+    <p>ФИО: {{ user.full_name }}</p>
+    <br>
+    <p><a href="/"><button>Вернуться на стартовую страницу</button></a></p>
+    <p>
+    {% if is_admin %}
+        <a href="/user/"><button>Получить список пользователей</button></a>
+        <a href="/user/crud/create/"><button>Создать пользователей</button></a>
+        <a href="/user/crud/update"><button>Обновить пользователей</button></a>
+        <a href="/user/crud/delete"><button>Удалить пользователей</button></a>
+    {% else %}
+        <a href="/user/{{ user.id }}/accounts/"><button>Получить список своих счетов и балансов</button></a>
+        <a href="/user/{{ user.id }}/payments/"><button>Получить список своих платежей</button></a>
+    {% endif %}
+    </p>
+    <p><a href="/logout"><button>Выйти из аккаунта</button></a></p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать пользователя</title>
+</head>
+<body>
+    <h1>Создать пользователя</h1>
+    <form action="/user/crud/create" method="POST">
+        <label for="email"><b>Email:</b></label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="full_name"><b>ФИО:</b></label>
+        <input type="text" id="full_name" name="full_name" required>
+        <br>
+        <label for="password"><b>Пароль:</b></label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <label for="is_admin"><b>Админ:</b></label>
+        <input type="checkbox" id="is_admin" name="is_admin">
+        <br>
+        <button type="submit">Создать</button>
+    </form>
+    <br>
+    <p>
+    <a href="/"><button>Вернуться на стартовую страницу</button></a>
+    <a href="/user/{{user_id}}"><button>Вернуться в личный кабинет</button></a>
+    </p>
+    <p><a href="/logout"><button>Выйти из аккаунта</button></a></p>
+    <p><span style="white-space: pre-line">{{result_message}}</span></p>
+</body>
+</html>

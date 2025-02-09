@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная страница</title>
+</head>
+<body>
+    <h1>Добро пожаловать!</h1>
+    {% if user %}
+<!--        <p>Вы вошли как: {{ user }})</p>-->
+        <p>Вы вошли как: {{ user.name }}</p>
+<!--        <p>Вы вошли как: {{ greetings }} </p>-->
+        <a href="/user/{{ user.id }}"><button>Перейти в личный кабинет</button></a>
+        <a href="/logout"><button>Выйти</button></a>
+    {% else %}
+        <p>Пожалуйста, авторизуйтесь ...</p>
+        <a href="/login"><button>Войти</button></a>
+    {% endif %}
+</body>
+</html>

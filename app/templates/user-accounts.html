@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+        {% if is_admin %}
+            <h3>Счета пользователя №{{ user_id }}:</h3>
+        {% else %}
+            <h3>Ваши счета:</h3>
+        {% endif %}
+
+        {% if accounts_list %}
+            {% for account in accounts_list %}
+            <li>
+            <p><b>Счет №:</b> {{ account.id }}</p>
+            <p><b>Баланс:</b> {{ account.balance }}</p>
+            </li>
+            {% endfor %}
+        {% else %}
+        <p>Список счетов пуст!</p>
+        {% endif %}
+
+        <br>
+        <a href="/"><button>Вернуться на стартовую страницу</button></a>
+
+        {% if is_admin %}
+            <a href="/user/{{admin_id}}"><button>Вернуться в личный кабинет</button></a>
+            <a href="/user/"><button>Вернуться к списку пользователей</button></a>
+        {% else %}
+            <a href="/user/{{user_id}}"><button>Вернуться в личный кабинет</button></a>
+            <a href="/user/{{user_id}}/payments/"><button>Получить список своих платежей</button></a>
+        {% endif %}
+
+        <a href="/logout"><button>Выйти из аккаунта</button></a>
+</body>
+</html>
