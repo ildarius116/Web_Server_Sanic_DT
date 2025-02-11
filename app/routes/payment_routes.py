@@ -6,12 +6,18 @@ from app.models import Payment, Account
 from app.config import Config
 import hashlib
 
-# Создаем Blueprint для маршрутов платежей
+# Blueprint для маршрутов платежей
 payment_bp = Blueprint("payment_routes", url_prefix="/payment")
 
 
 @payment_bp.route('/webhook', methods=['POST'])
-async def webhook(request):
+async def webhook(request) -> json:
+    """
+    Функция обработки платежей от сторонней платежной системы
+
+    :param request:
+    :return: результат выполнения транзакции
+    """
     data = request.json
     signature = data.pop('signature')
     sorted_data = sorted(data.items(), key=lambda x: x[0])
@@ -22,7 +28,7 @@ async def webhook(request):
         return json({"error": "Invalid signature"}, status=400)
 
     async with async_session() as session:
-        result = await session.execute(select(Account).where(Account.id == data['account_id']))
+        result = await session.execute(select(Account).where(Account.id == int(data['account_id'])))
         account = result.scalars().first()
         if not account:
             account = Account(id=data['account_id'], user_id=data['user_id'], balance=0.0)
@@ -42,4 +48,4 @@ async def webhook(request):
         account.balance += data['amount']
         await session.commit()
 
-    return json({"success": True})
+    return json({"success": "Transaction successfully processed"})

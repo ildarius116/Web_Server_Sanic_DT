@@ -1,9 +1,11 @@
 ## Тестовое задание _(не завершено)_
+
 # Web-сервер на фреймворке Sanic
 
-Текст ТЗ указан в файле "[Web_Server_ТЗ.docx](Web_Server_%D2%C7.docx)" 
+Текст ТЗ указан в файле "[Web_Server_ТЗ.docx](Web_Server_%D2%C7.docx)"
 
 __Доступные адреса (эндпоинты) и функции:__
+
 * "/" - корневой адрес - страница приветствия
 * "/login" - страница ввода данных для авторизации
 * "/logout" - страница выхода из авторизации
@@ -15,7 +17,26 @@ __Доступные адреса (эндпоинты) и функции:__
 * "/user/crud/update" - страница обновления данных пользователя
 * "/user/crud/delete" - страница удаления пользователя из БД
 
-## Примеры:
+### Тестовые аккаунты:
+
+1. Пользователь:
+* **Логин**: user@example.com
+* **Пароль**: user123
+
+2. Администратор:
+* **Логин**: admin@example.com
+* **Пароль**: admin123
+
+### Команды для запуска:
+* pip install -r requirements.txt
+* alembic upgrade head 
+* docker-compose up --build
+
+### Простейший эмулятор платежной системы:
+https://github.com/ildarius116/Webhook_payment_service
+
+### Примеры:
+
 * ### _"/":_
 * ![welcome.JPG](README%2Fwelcome.JPG)
 * ### _"/login":_
@@ -29,6 +50,7 @@ __Доступные адреса (эндпоинты) и функции:__
 * ![accounts_user.JPG](README%2Faccounts_user.JPG)
 * ![accounts_admin.JPG](README%2Faccounts_admin.JPG)
 * ### _"/user/<user_id:int>/payments" - только для пользователя:_
+* ![payments_user_null.JPG](README%2Fpayments_user_null.JPG)
 * ![payments_user.JPG](README%2Fpayments_user.JPG)
 * ### _"/user/crud/create" - только для админа:_
 * ![create_before.JPG](README%2Fcreate_before.JPG)
